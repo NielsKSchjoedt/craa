@@ -1,4 +1,12 @@
 .row-fluid
+  = smart_listing_controls_for(:race_cars) do
+    .filter.input-append
+      = text_field_tag :class_type, params[:class_type], class: "search", placeholder: "Søg på klasse", autocomplete: "off"
+      = number_field_tag :start_no, params[:start_no], class: "search", placeholder: "Søg på start nr", autocomplete: "off"
+      %button.btn.disabled{type: "submit"}
+        %i.icon.icon-search
+          Søg
+      =link_to "nulstil", race_cars_path, class: "glyphicon glyphicon-repeat"
   - unless smart_listing.empty?
     %table.table.table-striped
       %thead
@@ -11,6 +19,7 @@
         %th.col-md-1= smart_listing.sortable "Årgang", "year"
         %th.col-md-2= smart_listing.sortable "Motor CCM", "ccm"
         %th.col-md-2= smart_listing.sortable "Heste", "hp"
+        %th.col-md-2= smart_listing.sortable "0-100", "acceleration"
       %tbody
         - smart_listing.collection.each do |race_car|
           %tr.clickable{:onclick => "location.href='#{race_car_path(race_car)}'"}
@@ -23,6 +32,7 @@
             %td= race_car.year
             %td= race_car.ccm
             %td= race_car.hp
+            %td= race_car.acceleration
     -# Render nice pagination links fitted for Bootstrap 3 by default
     = smart_listing.paginate
     = smart_listing.pagination_per_page_links

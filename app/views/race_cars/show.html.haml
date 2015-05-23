@@ -44,9 +44,12 @@
     %b Hestekræfter:
     = @race_car.hp
   %p
+    %b 0-100 (sek):
+    = @race_car.acceleration
+  %p
     %b Beskrivelse:
     = @race_car.description
 
-= link_to 'Rediger', edit_race_car_path(@race_car)
+= link_to 'Rediger', edit_race_car_path(@race_car), class: 'btn btn-default'
 \|
-= link_to 'Tilbage', race_cars_path
+= link_to 'Tilbage', race_cars_path, class: 'btn btn-default'

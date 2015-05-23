@@ -6,8 +6,10 @@ class RaceCarsController < ApplicationController
   # GET /race_cars
   # GET /race_cars.json
   def index
-    smart_listing_create(:race_cars, RaceCar.includes(:drivers).all, partial: "race_cars/listing", default_sort: {votes: "desc"})
-    #@race_cars = RaceCar.order("votes DESC").page params[:page]
+    race_cars_scope = RaceCar.includes(:drivers)
+    race_cars_scope = race_cars_scope.where(class_type: params[:class_type]) if params[:class_type].present?
+    race_cars_scope = race_cars_scope.where(start_no: params[:start_no].to_i) if params[:start_no].present?
+    smart_listing_create(:race_cars, race_cars_scope, partial: "race_cars/listing", default_sort: {votes: "desc"})
   end
 
   # GET /race_cars/1
@@ -83,6 +85,6 @@ class RaceCarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def race_car_params
-      params.require(:race_car).permit(:start_no, :class_type, :make, :model, :year, :ccm, :hp, :description, :picture, drivers_attributes: [:full_name, :country, :profile_pictrue])
+      params.require(:race_car).permit(:start_no, :class_type, :make, :model, :year, :ccm, :hp, :acceleration, :description, :picture, drivers_attributes: [:full_name, :country, :profile_pictrue])
     end
 end

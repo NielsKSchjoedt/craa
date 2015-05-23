@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523074444) do
+ActiveRecord::Schema.define(version: 20150523094808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,15 @@ ActiveRecord::Schema.define(version: 20150523074444) do
     t.integer  "year"
     t.integer  "ccm"
     t.integer  "hp"
-    t.integer  "votes",                default: 0
+    t.integer  "votes",                                        default: 0
     t.text     "description"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.decimal  "acceleration",         precision: 8, scale: 1
   end
 
   add_index "race_cars", ["class_type", "start_no"], name: "index_race_cars_on_class_type_and_start_no", unique: true, using: :btree

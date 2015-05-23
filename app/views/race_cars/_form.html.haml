@@ -21,15 +21,18 @@
   .field
     = f.input :hp, label: "Hestekræfter"
   .field
+    = f.input :acceleration, label: "0-100 (sek)"
+  .field
     = f.input :description, label: "Beskrivelse af bilen"
   .field
-    = f.input :picture, :required => false, :as => :file, label: "Billede"
+    = f.input :picture, :required => false, :as => :file, label: "Billede af bil"
   = f.simple_fields_for :drivers do |d|
     .field
       =d.input :full_name, label: "Kører navn"
     .field
       =d.input :country, label: "Landekode", as: :text
     .field
-      =d.input :profile_picture, :required => false, :as => :file, label: "Profilbillede"
+      =d.input :profile_picture, :required => false, :as => :file, label: "Billede af kører"
+  %br
   .actions
-    = f.submit 'Save'
+    = f.submit 'Gem', class: 'btn btn-default'
