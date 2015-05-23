@@ -1,0 +1,34 @@
+= form_for @race_car do |f|
+  - if @race_car.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@race_car.errors.count, "error")} prohibited this race_car from being saved:"
+      %ul
+        - @race_car.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :start_no
+    = f.number_field :start_no
+  .field
+    = f.label :class_type
+    = f.text_field :class_type
+  .field
+    = f.label :make
+    = f.text_field :make
+  .field
+    = f.label :model
+    = f.text_field :model
+  .field
+    = f.label :year
+    = f.number_field :year
+  .field
+    = f.label :ccm
+    = f.text_field :ccm
+  .field
+    = f.label :hp
+    = f.number_field :hp
+  .field
+    = f.label :description
+    = f.text_area :description
+  .actions
+    = f.submit 'Save'

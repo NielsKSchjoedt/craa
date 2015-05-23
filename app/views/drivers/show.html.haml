@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Full name:
+  = @driver.full_name
+%p
+  %b Country:
+  = @driver.country
+
+= link_to 'Edit', edit_driver_path(@driver)
+\|
+= link_to 'Back', drivers_path

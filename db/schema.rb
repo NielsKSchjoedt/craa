@@ -11,9 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150523002702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drivers", force: :cascade do |t|
+    t.text     "full_name"
+    t.string   "country"
+    t.integer  "race_cars_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
+  end
+
+  add_index "drivers", ["race_cars_id"], name: "index_drivers_on_race_cars_id", using: :btree
+
+  create_table "race_cars", force: :cascade do |t|
+    t.integer  "start_no"
+    t.string   "class_type"
+    t.string   "make"
+    t.string   "model"
+    t.integer  "year"
+    t.integer  "ccm"
+    t.integer  "hp"
+    t.integer  "votes"
+    t.text     "description"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
 
 end

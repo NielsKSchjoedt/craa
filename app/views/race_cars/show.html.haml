@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Start no:
+  = @race_car.start_no
+%p
+  %b Class type:
+  = @race_car.class_type
+%p
+  %b Make:
+  = @race_car.make
+%p
+  %b Model:
+  = @race_car.model
+%p
+  %b Year:
+  = @race_car.year
+%p
+  %b Ccm:
+  = @race_car.ccm
+%p
+  %b Hp:
+  = @race_car.hp
+%p
+  %b Description:
+  = @race_car.description
+
+= link_to 'Edit', edit_race_car_path(@race_car)
+\|
+= link_to 'Back', race_cars_path

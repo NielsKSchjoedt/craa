@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_no: 1
+  class_type: MyString
+  make: MyString
+  model: MyString
+  year: 1
+  ccm: 
+  hp: 1
+  description: MyText
+
+two:
+  start_no: 1
+  class_type: MyString
+  make: MyString
+  model: MyString
+  year: 1
+  ccm: 
+  hp: 1
+  description: MyText
