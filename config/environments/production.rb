@@ -58,7 +58,8 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     },
     :url => ':s3_alias_url',
-    :s3_host_alias => 'craa-assets.s3.amazonaws.com'
+    :s3_host_alias => 'craa-assets.s3.amazonaws.com',
+    :path => "images/:class/:id.:style.:extension"
   }
 
   # Prepend all log lines with the following tags.
