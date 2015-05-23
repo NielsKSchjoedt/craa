@@ -27,6 +27,7 @@ gem 'puma'
 gem 'simple_form'
 gem 'honeybadger', '~> 2.0'
 gem 'kaminari'
+gem 'social-share-button'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

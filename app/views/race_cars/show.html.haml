@@ -4,13 +4,18 @@
 .col-md-3
   %p
     = image_tag @race_car.picture.url(:large)
-  %p
+  %h1 
+    = "Stemmer: "
+    = @race_car.votes
     = link_to "Stem på start nr. #{@race_car.start_no}!", upvote_race_car_path(@race_car), class: 'btn btn-success'
+  %p
     -if @your_vote
       = "Du har i øjeblikket stemt på start nr. "
       = link_to "#{@your_vote.start_no} I klasse #{@your_vote.class_type}", race_car_path(@your_vote.id)
     -else
       = "Du har endnu ikke stemt!"
+  %p
+    = social_share_button_tag("#{@race_car.driver.full_name} i sin seje: #{@race_car.make} #{@race_car.model}", url: race_car_url(@race_car.id), image: @race_car.picture.url(:large))
   %p
     %b Start nr.:
     = @race_car.start_no

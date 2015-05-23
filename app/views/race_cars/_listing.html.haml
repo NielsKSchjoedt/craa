@@ -8,10 +8,10 @@
           Søg
       =link_to "nulstil", race_cars_path, class: "glyphicon glyphicon-repeat"
   - unless smart_listing.empty?
-    %table.table.table-striped
+    %table.table.table-striped.table-hover
       %thead
-        %th.col-md-1= smart_listing.sortable "Stemmer", "votes"
         %th.col-md-2= "Billede"
+        %th.col-md-1= smart_listing.sortable "Stemmer", "votes"
         %th.col-md-1= smart_listing.sortable "Start nr", "start_no"
         %th.col-md-2= smart_listing.sortable "Klasse", "class_type"
         %th.col-md-2= smart_listing.sortable "Mærke", "make"
@@ -23,8 +23,8 @@
       %tbody
         - smart_listing.collection.each do |race_car|
           %tr.clickable{:onclick => "location.href='#{race_car_path(race_car)}'"}
-            %td= race_car.votes
             %td= image_tag race_car.picture.url(:thumb)
+            %td.success= race_car.votes
             %td= race_car.start_no
             %td= race_car.class_type
             %td= race_car.make

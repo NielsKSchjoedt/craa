@@ -37,6 +37,7 @@
     = f.input :picture, :required => false, :as => :file, label: "Billede af bil"
   %br
   = f.simple_fields_for :driver do |d|
+    = d.input :id, as: :hidden
     .field
       =d.input :full_name, label: "Kører navn"
     %br
