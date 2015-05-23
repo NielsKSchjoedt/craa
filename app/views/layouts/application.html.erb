@@ -20,13 +20,12 @@
   </head>
   <body>
     <div class=container>
-      <%= image_tag "banner.jpg" %>
-      <%= yield %>
-      </br>
       <div style="text-align:center;">
+        <%= image_tag "banner.jpg" %>
         <%= "powered by "%>
         <%= link_to image_tag("autouncle.png"), "http://www.autouncle.dk"%>
       </div>
+      <%= yield %>
     </div>
   </body>
 </html>
