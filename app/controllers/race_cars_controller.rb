@@ -34,7 +34,7 @@ class RaceCarsController < ApplicationController
       @race_car.increment!(:votes)
       cookies.permanent[:voted_for] = @race_car.id
     end
-    redirect_to :back, notice: "Tak for din stemme. Du har stemt nu på start nr. #{@race_car.start_no} som din favorit!"
+    redirect_to :back, notice: "Tak for din stemme. Du har stemt nu på start nr. #{@race_car.start_no} i klasse #{@race_car.class_type} som din favorit!"
   end
 
   # POST /race_cars
@@ -64,16 +64,6 @@ class RaceCarsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @race_car.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /race_cars/1
-  # DELETE /race_cars/1.json
-  def destroy
-    @race_car.destroy
-    respond_to do |format|
-      format.html { redirect_to race_cars_url, notice: 'Race car was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
