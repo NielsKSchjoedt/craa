@@ -18,15 +18,15 @@
     %b Kører i klasse:
     = @race_car.class_type
 .col-md-3
-  - @race_car.drivers.each do |driver|
-    %p
-      = image_tag driver.profile_picture.url(:thumb)
-    %p
-      %b Navn:
-      = link_to driver.full_name, driver_path(driver)
-    %p
-      %b Land:
-      = driver.country
+  - driver = @race_car.driver
+  %p
+    = image_tag driver.profile_picture.url(:thumb)
+  %p
+    %b Navn:
+    = link_to driver.full_name, driver_path(driver)
+  %p
+    %b Land:
+    = driver.country
 .col-md-3
   %p
     %b Mærke:
