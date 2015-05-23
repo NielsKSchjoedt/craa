@@ -5,7 +5,7 @@
     %p
       = image_tag @race_car.picture.url(:large)
     %p
-      = link_to "Stem på start nr. #{@race_car.start_no}!", upvote_race_car_path(@race_car)
+      = link_to "Stem på start nr. #{@race_car.start_no}!", upvote_race_car_path(@race_car), class: 'btn'
       -if @your_vote
         = "Du har i øjeblikket stemt på start nr. #{@your_vote.start_no}"
       -else
