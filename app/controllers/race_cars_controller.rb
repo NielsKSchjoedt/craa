@@ -75,6 +75,6 @@ class RaceCarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def race_car_params
-      params.require(:race_car).permit(:start_no, :class_type, :make, :model, :year, :ccm, :hp, :acceleration, :description, :picture, driver_attributes: [:id, :full_name, :country, :profile_picture])
+      params.require(:race_car).permit(:start_no, :class_type, :make, :model, :year, :ccm, :hp, :acceleration, :top_speed, :description, :picture, driver_attributes: [:id, :full_name, :country, :profile_picture])
     end
 end

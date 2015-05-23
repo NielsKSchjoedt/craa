@@ -20,6 +20,7 @@
         %th.col-md-2= smart_listing.sortable "Motor CCM", "ccm"
         %th.col-md-2= smart_listing.sortable "Heste", "hp"
         %th.col-md-2= smart_listing.sortable "0-100", "acceleration"
+        %th.col-md-2= smart_listing.sortable "Tophastighed", "top_speed"
       %tbody
         - smart_listing.collection.each do |race_car|
           %tr.clickable{:onclick => "location.href='#{race_car_path(race_car)}'"}
@@ -33,6 +34,7 @@
             %td= race_car.ccm
             %td= race_car.hp
             %td= race_car.acceleration
+            %td= race_car.top_speed
     -# Render nice pagination links fitted for Bootstrap 3 by default
     = smart_listing.paginate
     = smart_listing.pagination_per_page_links
