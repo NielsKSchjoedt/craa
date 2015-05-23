@@ -8,11 +8,15 @@
 
   .field
     = f.input :full_name
+  %br
   .field
     = f.input :country, collection: Driver.pluck(:country).uniq
+  %br
   .field
     = f.input :race_car, collection: RaceCar.pluck(:id)
+  %br
   .field
     = f.input :profile_picture, :required => false, :as => :file, label: "Billede af kører"
+  %br
   .actions
-    = f.submit 'Gem', class: 'btn btn-default'
+    = f.submit 'Gem', class: 'btn btn-primary'

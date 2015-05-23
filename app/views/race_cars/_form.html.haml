@@ -8,31 +8,43 @@
 
   .field
     = f.input :start_no, label: "Start nr."
+  %br
   .field
     = f.input :class_type, label: "Kører i klasse"
+  %br
   .field
     = f.input :make, label: "Mærke"
+  %br
   .field
     = f.input :model, label: "Model/variant"
+  %br
   .field
     = f.input :year, label: "Årgang"
+  %br
   .field
     = f.input :ccm, label: "Motorstørrelse (CCM)"
+  %br
   .field
     = f.input :hp, label: "Hestekræfter"
+  %br
   .field
     = f.input :acceleration, label: "0-100 (sek)"
+  %br
   .field
     = f.input :description, label: "Beskrivelse af bilen"
+  %br
   .field
     = f.input :picture, :required => false, :as => :file, label: "Billede af bil"
+  %br
   = f.simple_fields_for :drivers do |d|
     .field
       =d.input :full_name, label: "Kører navn"
+    %br
     .field
       =d.input :country, label: "Landekode", as: :text
+    %br
     .field
       =d.input :profile_picture, :required => false, :as => :file, label: "Billede af kører"
   %br
   .actions
-    = f.submit 'Gem', class: 'btn btn-default'
+    = f.submit 'Gem', class: 'btn btn-primary'
