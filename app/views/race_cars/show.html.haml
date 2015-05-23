@@ -1,42 +1,52 @@
 %p#notice= notice
 
-.row-fluid
-  .span3
-    %p
-      = image_tag @race_car.picture.url(:large)
-    %p
-      = link_to "Stem på start nr. #{@race_car.start_no}!", upvote_race_car_path(@race_car), class: 'btn'
-      -if @your_vote
-        = "Du har i øjeblikket stemt på start nr. #{@your_vote.start_no}"
-      -else
-        = "Du har endnu ikke stemt!"
-    %p
-      %b Start nr.:
-      = @race_car.start_no
-    %p
-      %b Kører i klasse:
-      = @race_car.class_type
-  .span3
-    %p
-      %b Mærke:
-      = @race_car.make
-    %p
-      %b Model/variant:
-      = @race_car.model
-    %p
-      %b årgang:
-      = @race_car.year
-  .span3
-    %p
-      %b Motorstørrelse (Ccm):
-      = @race_car.ccm
-    %p
-      %b Hestekræfter:
-      = @race_car.hp
-    %p
-      %b Beskrivelse:
-      = @race_car.description
 
-  = link_to 'Rediger', edit_race_car_path(@race_car)
-  \|
-  = link_to 'Tilbage', race_cars_path
+.col-md-3
+  %p
+    = image_tag @race_car.picture.url(:large)
+  %p
+    = link_to "Stem på start nr. #{@race_car.start_no}!", upvote_race_car_path(@race_car), class: 'btn btn-success'
+    -if @your_vote
+      = "Du har i øjeblikket stemt på start nr. #{@your_vote.start_no}"
+    -else
+      = "Du har endnu ikke stemt!"
+  %p
+    %b Start nr.:
+    = @race_car.start_no
+  %p
+    %b Kører i klasse:
+    = @race_car.class_type
+.col-md-3
+  - @race_car.drivers.each do |driver|
+    %p
+      = image_tag driver.profile_picture.url(:thumb)
+    %p
+      %b Navn:
+      = link_to driver.full_name, driver_path(driver)
+    %p
+      %b Land:
+      = driver.country
+.col-md-3
+  %p
+    %b Mærke:
+    = @race_car.make
+  %p
+    %b Model/variant:
+    = @race_car.model
+  %p
+    %b årgang:
+    = @race_car.year
+.col-md-3
+  %p
+    %b Motorstørrelse (Ccm):
+    = @race_car.ccm
+  %p
+    %b Hestekræfter:
+    = @race_car.hp
+  %p
+    %b Beskrivelse:
+    = @race_car.description
+
+= link_to 'Rediger', edit_race_car_path(@race_car)
+\|
+= link_to 'Tilbage', race_cars_path

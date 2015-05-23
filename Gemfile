@@ -33,6 +33,7 @@ gem 'kaminari'
 
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'mechanize'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

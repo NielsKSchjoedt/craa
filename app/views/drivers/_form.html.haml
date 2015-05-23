@@ -9,7 +9,9 @@
   .field
     = f.input :full_name
   .field
-    = f.input :country
+    = f.input :country, collection: Driver.pluck(:country).uniq
+  .field
+    = f.input :race_car, collection: RaceCar.pluck(:id)
   .field
     = f.input :picture, :required => false, :as => :file
   .actions

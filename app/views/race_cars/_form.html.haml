@@ -24,5 +24,12 @@
     = f.input :description, label: "Beskrivelse af bilen"
   .field
     = f.input :picture, :required => false, :as => :file, label: "Billede"
+  = f.simple_fields_for :drivers do |d|
+    .field
+      =d.input :full_name, label: "Kører navn"
+    .field
+      =d.input :country, label: "Landekode", as: :text
+    .field
+      =d.input :profile_picture, :required => false, :as => :file, label: "Profilbillede"
   .actions
     = f.submit 'Save'

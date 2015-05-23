@@ -1,13 +1,16 @@
 %p#notice= notice
 
 %p
-  %b Full name:
+  = image_tag @driver.profile_picture.url(:large)
+%p
+  %b Bil:
+  = link_to "Kører i: Klasse #{@driver.race_car.class_type} med start nummer #{@driver.race_car.start_no} i en #{@driver.race_car.make} #{@driver.race_car.model}", race_car_path(@driver.race_car)
+%p
+  %b Navn:
   = @driver.full_name
 %p
-  %b Country:
+  %b Land:
   = @driver.country
-
-= link_to 'Stem!', edit_driver_path(@driver)
 
 = link_to 'Edit', edit_driver_path(@driver)
 \|
