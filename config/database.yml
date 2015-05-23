@@ -16,10 +16,13 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
+  template: template0 # Required for UTF8 encoding
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  username: postgres
+  password: postgres
 
 development:
   <<: *default
@@ -81,5 +84,3 @@ test:
 production:
   <<: *default
   database: craa_production
-  username: craa
-  password: <%= ENV['CRAA_DATABASE_PASSWORD'] %>
