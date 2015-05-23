@@ -13,6 +13,6 @@
   .field
     = f.input :race_car, collection: RaceCar.pluck(:id)
   .field
-    = f.input :picture, :required => false, :as => :file
+    = f.input :profile_picture, :required => false, :as => :file, label: "Billede af kører"
   .actions
     = f.submit 'Gem', class: 'btn btn-default'
