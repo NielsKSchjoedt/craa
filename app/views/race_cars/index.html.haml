@@ -1,34 +1,41 @@
-%h1 Listing race_cars
+=smart_listing_render(:race_cars)
+/ %h1 Listing race_cars
 
-%table
-  %thead
-    %tr
-      %th Start no
-      %th Class type
-      %th Make
-      %th Model
-      %th Year
-      %th Ccm
-      %th Hp
-      %th Description
-      %th
-      %th
-      %th
+/ = paginate @race_cars
 
-  %tbody
-    - @race_cars.each do |race_car|
-      %tr
-        %td= race_car.start_no
-        %td= race_car.class_type
-        %td= race_car.make
-        %td= race_car.model
-        %td= race_car.year
-        %td= race_car.ccm
-        %td= race_car.hp
-        %td= race_car.description
-        %td= link_to 'Show', race_car
-        %td= link_to 'Edit', edit_race_car_path(race_car)
-        %td= link_to 'Destroy', race_car, :method => :delete, :data => { :confirm => 'Are you sure?' }
+/ %table
+/   %thead
+/     %tr
+/       %th Stemmer
+/       %th Billede
+/       %th Start nr
+/       %th Kører i klasse
+/       %th Mærke
+/       %th Model
+/       %th Årgang
+/       %th Motorstyrrelse
+/       %th Hestekræfter
+/       %th
+/       %th
+/       %th
+
+/   %tbody
+/     - @race_cars.each do |race_car|
+/       %tr
+/         %td= race_car.votes
+/         %td= image_tag race_car.picture.url(:thumb)
+/         %td= race_car.start_no
+/         %td= race_car.class_type
+/         %td= race_car.make
+/         %td= race_car.model
+/         %td= race_car.year
+/         %td= race_car.ccm
+/         %td= race_car.hp
+/         %td= link_to 'Show', race_car
+/         %td= link_to 'Edit', edit_race_car_path(race_car)
+/         %td= link_to 'Destroy', race_car, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+/ = paginate @race_cars
 
 %br
 

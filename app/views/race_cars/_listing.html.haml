@@ -1,0 +1,58 @@
+- unless smart_listing.empty?
+  %table.table.table-striped
+    %thead
+      %th.col-md-3= smart_listing.sortable "Stemmer", "votes"
+      %th.col-md-3= "Picture"
+      %th.col-md-3= smart_listing.sortable "Start nr", "start_no"
+      %th.col-md-2= smart_listing.sortable "Kører i klasse", "class_type"
+      %th.col-md-2= smart_listing.sortable "Mærke", "make"
+      %th.col-md-2= smart_listing.sortable "Model", "model"
+      %th.col-md-2= smart_listing.sortable "Årgang", "year"
+      %th.col-md-2= smart_listing.sortable "Motorstørrelse", "ccm"
+      %th.col-md-2= smart_listing.sortable "Hestekræfter", "hp"
+    %tbody
+      - smart_listing.collection.each do |race_car|
+        %tr
+          %td= race_car.votes
+          %td= image_tag race_car.picture.url(:thumb)
+          %td= race_car.start_no
+          %td= race_car.class_type
+          %td= race_car.make
+          %td= race_car.model
+          %td= race_car.year
+          %td= race_car.ccm
+          %td= race_car.hp
+  -# Render nice pagination links fitted for Bootstrap 3 by default
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links
+- else
+  %p.warning No records!
+
+/ %th Stemmer
+/       %th Billede
+/       %th Start nr
+/       %th Kører i klasse
+/       %th Mærke
+/       %th Model
+/       %th Årgang
+/       %th Motorstyrrelse
+/       %th Hestekræfter
+/       %th
+/       %th
+/       %th
+
+/   %tbody
+/     - @race_cars.each do |race_car|
+/       %tr
+/         %td= race_car.votes
+/         %td= image_tag race_car.picture.url(:thumb)
+/         %td= race_car.start_no
+/         %td= race_car.class_type
+/         %td= race_car.make
+/         %td= race_car.model
+/         %td= race_car.year
+/         %td= race_car.ccm
+/         %td= race_car.hp
+/         %td= link_to 'Show', race_car
+/         %td= link_to 'Edit', edit_race_car_path(race_car)
+/         %td= link_to 'Destroy', race_car, :method => :delete, :data => { :confirm => 'Are you sure?' }

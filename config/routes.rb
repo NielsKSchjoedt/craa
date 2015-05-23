@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  root 'race_cars#index'
+
   resources :drivers
-  resources :race_cars
+  resources :race_cars do
+    member do
+      get :upvote
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,15 +1,19 @@
 class RaceCarsController < ApplicationController
-  before_action :set_race_car, only: [:show, :edit, :update, :destroy]
+  before_action :set_race_car, only: [:show, :edit, :update, :destroy, :upvote]
+  include SmartListing::Helper::ControllerExtensions
+  helper  SmartListing::Helper
 
   # GET /race_cars
   # GET /race_cars.json
   def index
-    @race_cars = RaceCar.all
+    smart_listing_create(:race_cars, RaceCar.all, partial: "race_cars/listing", default_sort: {votes: "desc"})
+    #@race_cars = RaceCar.order("votes DESC").page params[:page]
   end
 
   # GET /race_cars/1
   # GET /race_cars/1.json
   def show
+    @your_vote = RaceCar.find_by_id(cookies[:voted_for])
   end
 
   # GET /race_cars/new
@@ -19,6 +23,15 @@ class RaceCarsController < ApplicationController
 
   # GET /race_cars/1/edit
   def edit
+  end
+
+  def upvote
+    RaceCar.transaction do
+      RaceCar.decrement_counter(:votes, cookies[:voted_for]) if cookies[:voted_for] 
+      @race_car.increment!(:votes)
+      cookies.permanent[:voted_for] = @race_car.id
+    end
+    redirect_to :back, notice: "Tak for din stemme. Du har stemt nu på start nr. #{@race_car.start_no} som din favorit!"
   end
 
   # POST /race_cars
@@ -69,6 +82,6 @@ class RaceCarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def race_car_params
-      params.require(:race_car).permit(:start_no, :class_type, :make, :model, :year, :ccm, :hp, :description)
+      params.require(:race_car).permit(:start_no, :class_type, :make, :model, :year, :ccm, :hp, :description, :picture)
     end
 end

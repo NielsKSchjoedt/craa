@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523002702) do
+ActiveRecord::Schema.define(version: 20150523012922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150523002702) do
   create_table "drivers", force: :cascade do |t|
     t.text     "full_name"
     t.string   "country"
-    t.integer  "race_cars_id"
+    t.integer  "race_car_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "profile_picture_file_name"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150523002702) do
     t.datetime "profile_picture_updated_at"
   end
 
-  add_index "drivers", ["race_cars_id"], name: "index_drivers_on_race_cars_id", using: :btree
+  add_index "drivers", ["race_car_id"], name: "index_drivers_on_race_car_id", using: :btree
 
   create_table "race_cars", force: :cascade do |t|
     t.integer  "start_no"
@@ -38,14 +38,17 @@ ActiveRecord::Schema.define(version: 20150523002702) do
     t.integer  "year"
     t.integer  "ccm"
     t.integer  "hp"
-    t.integer  "votes"
+    t.integer  "votes",                default: 0
     t.text     "description"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
   end
 
+  add_index "race_cars", ["start_no"], name: "index_race_cars_on_start_no", unique: true, using: :btree
+
+  add_foreign_key "drivers", "race_cars"
 end

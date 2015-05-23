@@ -1,4 +1,4 @@
-= form_for @race_car do |f|
+= simple_form_for @race_car, :html => { :multipart => true } do |f|
   - if @race_car.errors.any?
     #error_explanation
       %h2= "#{pluralize(@race_car.errors.count, "error")} prohibited this race_car from being saved:"
@@ -7,28 +7,22 @@
           %li= msg
 
   .field
-    = f.label :start_no
-    = f.number_field :start_no
+    = f.input :start_no, label: "Start nr."
   .field
-    = f.label :class_type
-    = f.text_field :class_type
+    = f.input :class_type, label: "Kører i klasse"
   .field
-    = f.label :make
-    = f.text_field :make
+    = f.input :make, label: "Mærke"
   .field
-    = f.label :model
-    = f.text_field :model
+    = f.input :model, label: "Model/variant"
   .field
-    = f.label :year
-    = f.number_field :year
+    = f.input :year, label: "Årgang"
   .field
-    = f.label :ccm
-    = f.text_field :ccm
+    = f.input :ccm, label: "Motorstørrelse (CCM)"
   .field
-    = f.label :hp
-    = f.number_field :hp
+    = f.input :hp, label: "Hestekræfter"
   .field
-    = f.label :description
-    = f.text_area :description
+    = f.input :description, label: "Beskrivelse af bilen"
+  .field
+    = f.input :picture, :required => false, :as => :file, label: "Billede"
   .actions
     = f.submit 'Save'
