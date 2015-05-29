@@ -6,7 +6,7 @@ class RaceCar < ActiveRecord::Base
   accepts_nested_attributes_for :driver
   paginates_per 30
 
-  has_attached_file :picture, :styles => { :large => "600x600>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :picture, :styles => { :large => "600x600>", :thumb => "100x100>" }, :default_url => ":style/missing.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 end
 
