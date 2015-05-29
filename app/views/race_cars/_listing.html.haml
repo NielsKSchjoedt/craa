@@ -8,7 +8,31 @@
           Søg
       =link_to "nulstil", race_cars_path, class: "glyphicon glyphicon-repeat"
   - unless smart_listing.empty?
-    %table.table.table-striped.table-hover
+    .race-car-list
+      - smart_listing.collection.each do |race_car|
+        = link_to race_car, class: 'race-car' do
+          .row
+            .col-md-2.col-xs-4= image_tag race_car.picture.url(:thumb)
+            .col-md-3.col-xs-6
+              = race_car.make
+              = race_car.model
+              = race_car.year
+            .col-md-1.col-xs-2
+              %i.glyphicon.glyphicon-thumbs-up
+              = race_car.votes
+            .col-md-1.visible-md-block.visible-lg-block
+              Klasse #{race_car.class_type}
+            .col-md-2.visible-md-block.visible-lg-block
+              - if race_car.ccm.present? 
+                .ccm #{race_car.ccm} ccm
+              - if race_car.hp.present? 
+                .hp #{race_car.hp} HK
+              - if race_car.acceleration.present?
+                .acceleration 0-100: #{race_car.acceleration}
+              - if race_car.top_speed.present?
+                .top_speed maks. #{race_car.top_speed} km/t
+      
+    -#%table.table.table-striped.table-hover
       %thead
         %th.col-md-2= "Billede"
         %th.col-md-1= smart_listing.sortable "Stemmer", "votes"
